@@ -6,8 +6,8 @@
   vars:
     - homeDir: /home/ubuntu
     - appDir : app
-    - repo: the-example-app.nodejs
-    - account: uzsh
+    - repo: repo-name
+    - account: github_username
 
   tasks:
    - name: Run the equivalent of "apt-get update" as a separate step
@@ -37,15 +37,13 @@
 
    - name: Clone Public Repository
      git:
-       repo: https://github.com/uzsh/the-example-app.nodejs.git 
+       repo: github_repo-url
        dest: "{{homeDir}}/{{appDir}}"
        force: "yes"
-
 
    - name: Running NPM install
      npm: path={{homeDir}}/{{appDir}}
      register: npm_finished
-
        
    - name: stop node apps
      command: pm2 delete all
